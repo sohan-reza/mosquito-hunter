@@ -1,0 +1,114 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: linear-gradient(to bottom, #87CEEB, #E0F6FF);
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><text y="28" font-size="28">👋</text></svg>') 16 16, auto;
+}
+
+.info {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 100;
+}
+
+.mosquito-container {
+    position: absolute;
+    width: 40px;  
+    height: 40px; 
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><text y="28" font-size="28">👋</text></svg>') 16 16, pointer;
+}
+
+.mosquito {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    pointer-events: auto; /* Make sure it's clickable */
+}
+
+.mosquito img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; 
+    pointer-events: auto;
+}
+
+.mosquito.dying {
+    animation: splat 0.3s ease-out forwards;
+}
+
+@keyframes splat {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.3);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+
+.blood-splatter {
+    position: absolute;
+    pointer-events: none;
+    z-index: 50;
+}
+
+.blood-drop {
+    position: absolute;
+    background: #8B0000;
+    border-radius: 50%;
+    animation: bloodSplat 0.5s ease-out forwards;
+}
+
+@keyframes bloodSplat {
+    0% {
+        transform: translate(0, 0) scale(0);
+        opacity: 1;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--tx), var(--ty)) scale(1);
+        opacity: 0;
+    }
+}
+
+.blood-stain {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle, #8B0000 0%, #660000 40%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0;
+    animation: stainAppear 0.3s ease-out forwards;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes stainAppear {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+}
